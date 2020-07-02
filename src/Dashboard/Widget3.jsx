@@ -47,36 +47,58 @@ function Widget(props) {
 
 
     const classes = useStyles(props);
-    const hideContent = true; 
+    const hideContent = props.mode === 2; 
+
     const handleExpandClick = () => {
-        if(props.onChange){
-             props.onChange()
+        if(props.onExpand){
+             props.onExpand()
         }
     };
+    const handleMinimizeClick = () => {
+        if(props.onMinimize){
+            props.onMinimize()
+       }
+    }
+
+    const Icon = () => {
+        if(props.mode === 2){
+            return (
+                <IconButton onClick={handleExpandClick}>
+                        <MaximizeIcon />
+                    </IconButton>
+            )
+        }
+        else{
+            return (
+                <IconButton onClick={handleMinimizeClick}>
+                        <MinimizeIcon />
+                    </IconButton>
+            );
+        }
+    }
+
     return (
         <Card className={classes.root} variant="outlined">
             <CardHeader
-                subheader="The Title"
-                action={
-                    <IconButton onClick={handleExpandClick}>
-                        <MaximizeIcon />
-                    </IconButton>
-                }>
+                subheader="The Title-3"
+                action={Icon()}>
             </CardHeader>
             <CardContent hidden={hideContent}>
                 <Typography className={classes.title} color="primary" gutterBottom>
-                    The Title
-        </Typography>
+                    The Title 3
+                </Typography>
                 <Typography color="textPrimary" className={classes.subtitle} gutterBottom>
                     {new Date().toDateString()}
+                    
                 </Typography>
+                
                 <Typography variant="body2" color="secondary" component="p">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit.
         </Typography>
             </CardContent>
             <CardActions>
                 <Typography variant="caption" className={classes.footer}>
-                    The Footer
+                    The Footer {props.data}
           </Typography>
             </CardActions>
 
