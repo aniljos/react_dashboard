@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Dashboard from './Dashboard/Dashboard';
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
           Learn React
         </a>
       </header>
+      <article>
+        <Dashboard/>
+      </article>
     </div>
   );
 }
